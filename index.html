@@ -1,0 +1,367 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Monika Bhuva — WordPress Developer</title>
+  <meta name="description" content="Portfolio of Monika Bhuva — WordPress Developer. Elementor, ACF, WooCommerce, custom themes, plugin work and responsive design.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --muted:#9aa4b2;
+      --accent:#0ea5a3;
+      --glass: rgba(255,255,255,0.04);
+      --glass-2: rgba(255,255,255,0.02);
+      --radius:14px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;}
+    body{
+      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background: linear-gradient(180deg,#071026 0%, #081428 60%); color:#e6eef6;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      line-height:1.45;
+    }
+    a{color:var(--accent); text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:18px 0}
+    .brand{display:flex;gap:14px;align-items:center}
+    .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#6ee7b7);display:flex;align-items:center;justify-content:center;font-weight:700;color:#022;box-shadow:0 6px 18px rgba(13,20,30,0.6)}
+    .brand h1{margin:0;font-size:18px;letter-spacing:0.2px}
+    .brand p{margin:0;font-size:12px;color:var(--muted)}
+    nav{display:flex;gap:14px;align-items:center}
+    .btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:10px;font-weight:600}
+    .btn.cta{background:linear-gradient(90deg,var(--accent),#7dd3d3);color:#032; border:0}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 360px;gap:28px;align-items:center;margin:28px 0}
+    .intro h2{margin:0;font-size:28px}
+    .intro p{color:var(--muted);margin-top:12px}
+    .links{display:flex;gap:12px;margin-top:18px}
+    .stats{display:flex;gap:16px;margin-top:24px}
+    .stat{background:var(--glass);padding:10px 12px;border-radius:12px}
+    .photo-card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border-radius:14px;padding:18px;display:flex;flex-direction:column;gap:12px;align-items:center}
+    .photo{width:180px;height:180px;border-radius:12px;background:linear-gradient(180deg,#0ea5a3,#7dd3d3);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:700;color:#032}
+    .contact-small{width:100%;display:flex;flex-direction:column;gap:6px}
+    .muted{color:var(--muted);font-size:13px}
+
+    /* Sections */
+    section{margin:28px 0}
+    .card{background:var(--card);border-radius:var(--radius);padding:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+
+    /* Skills */
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skill{background:var(--glass-2);padding:8px 10px;border-radius:9px;font-weight:600;font-size:13px}
+
+    /* Timeline */
+    .timeline{display:flex;flex-direction:column;gap:12px}
+    .timeline-item{display:flex;gap:14px}
+    .timeline-left{min-width:120px;color:var(--muted);font-size:14px}
+    .timeline-right h4{margin:0}
+    .timeline-right p{color:var(--muted);margin:6px 0 0}
+
+    /* Projects */
+    .projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .project{border-radius:12px;overflow:hidden;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));display:flex;flex-direction:column}
+    .project .thumb{height:140px;background:linear-gradient(135deg,#052134,#0b1d2b);display:flex;align-items:center;justify-content:center;font-weight:700}
+    .proj-body{padding:12px}
+    .proj-body p{margin:8px 0 0;color:var(--muted);font-size:13px}
+    .proj-links{margin-top:10px;display:flex;gap:8px}
+
+    /* Contact */
+    .contact-grid{display:grid;grid-template-columns:1fr 360px;gap:18px}
+    label{font-size:13px;color:var(--muted);display:block;margin-bottom:6px}
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    .send{margin-top:10px;padding:10px 14px;border-radius:10px;border:0;background:var(--accent);color:#022;font-weight:700}
+
+    footer{margin:30px 0;padding:18px 0;color:var(--muted);text-align:center}
+
+    /* Responsive */
+    @media (max-width:1000px){
+      .hero{grid-template-columns:1fr}
+      .projects-grid{grid-template-columns:repeat(2,1fr)}
+      .contact-grid{grid-template-columns:1fr}
+    }
+    @media (max-width:620px){
+      .projects-grid{grid-template-columns:repeat(1,1fr)}
+      .logo{width:46px;height:46px}
+      .photo{width:140px;height:140px}
+      header{gap:8px}
+    }
+
+    /* small animations */
+    .fade-up{opacity:0;transform:translateY(12px);animation:fadeUp .7s ease forwards}
+    @keyframes fadeUp{to{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="brand">
+        <div class="logo">MB</div>
+        <div>
+          <h1>Monika Bhuva</h1>
+          <p>WordPress Developer — 4+ Years Experience</p>
+        </div>
+      </div>
+      <nav>
+        <a class="btn" href="#projects">Projects</a>
+        <a class="btn" href="#experience">Experience</a>
+        <a class="btn" href="#contact">Contact</a>
+        <a class="btn cta" href="WP_Monika_Bhuva_CV.pdf" download>Download CV</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="intro">
+          <h2 class="fade-up">Hi — I'm <strong>Monika</strong>. A WordPress Developer focused on clean, performant and accessible websites.</h2>
+          <p class="fade-up" style="animation-delay:.06s">I build custom WordPress themes, ACF-driven admin interfaces, WooCommerce stores and conversion-focused landing pages. I convert Figma/PSD to WordPress and optimize for speed and SEO.</p>
+
+          <div class="links fade-up" style="animation-delay:.12s">
+            <a class="btn cta" href="#projects">View My Work</a>
+            <a class="btn" href="mailto:monibhuva47@gmail.com">Hire Me</a>
+          </div>
+
+          <div class="stats fade-up" style="animation-delay:.18s">
+            <div class="stat">
+              <div style="font-weight:700">4+ yrs</div>
+              <div class="muted">WordPress Dev</div>
+            </div>
+            <div class="stat">
+              <div style="font-weight:700">8+</div>
+              <div class="muted">Major Projects</div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="photo-card fade-up" style="animation-delay:.24s">
+          <div class="photo">MB</div>
+          <div style="text-align:center">
+            <div style="font-weight:700">Monika Bhuva</div>
+            <div class="muted">Surat, Gujarat • +91 87809 05708</div>
+            <div class="muted" style="margin-top:6px"><a href="https://www.linkedin.com/in/moni-bhuva-28817a1b5" target="_blank">LinkedIn</a> • <a href="mailto:monibhuva47@gmail.com">monibhuva47@gmail.com</a></div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about" class="card">
+        <h3>About Me</h3>
+        <p class="muted">Detail-oriented and highly skilled WordPress Developer with experience in Elementor, WPBakery, ACF and WooCommerce. I build custom themes and plugins, focus on performance, and create editor-friendly backends for content teams.</p>
+
+        <div style="margin-top:12px">
+          <strong>Core skills</strong>
+          <div class="skills" style="margin-top:8px">
+            <span class="skill">Elementor</span>
+            <span class="skill">ACF</span>
+            <span class="skill">WPBakery</span>
+            <span class="skill">WooCommerce</span>
+            <span class="skill">HTML5</span>
+            <span class="skill">CSS3</span>
+            <span class="skill">JavaScript</span>
+            <span class="skill">PHP</span>
+            <span class="skill">Bootstrap</span>
+            <span class="skill">Git</span>
+            <span class="skill">REST API</span>
+            <span class="skill">SEO</span>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience">
+        <div class="card">
+          <h3>Experience</h3>
+          <div class="timeline" style="margin-top:12px">
+            <div class="timeline-item">
+              <div class="timeline-left">May 2024 — Present</div>
+              <div class="timeline-right">
+                <h4>WordPress Developer — FinGuru India</h4>
+                <p class="muted">Developed and customized WordPress websites using Elementor, ACF and WPBakery. Created custom post types and layouts, worked with REST APIs and custom themes.</p>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-left">Sep 2019 — Jun 2023</div>
+              <div class="timeline-right">
+                <h4>WordPress Developer — Blue Infinity Tech LLP</h4>
+                <p class="muted">Led end-to-end development of client websites, plugin customization, page speed optimization and maintained multiple WordPress sites.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="projects">
+        <h3>Selected Projects</h3>
+        <div class="projects-grid" style="margin-top:12px">
+
+          <article class="project">
+            <div class="thumb">LoopyLinks</div>
+            <div class="proj-body">
+              <strong>LoopyLinks</strong>
+              <p class="muted">Built using Elementor. Clean, responsive layout for digital designs & marketing.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://www.loopylinks.com" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="thumb">Education Alternatives</div>
+            <div class="proj-body">
+              <strong>easchools.org</strong>
+              <p class="muted">Custom WordPress theme with Advanced Custom Fields for education content and custom post types.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://easchools.org" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="thumb">Soarcio</div>
+            <div class="proj-body">
+              <strong>Soarcio</strong>
+              <p class="muted">Responsive high-performance site built with Elementor.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://soarcio.com" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="thumb">FinGuru India</div>
+            <div class="proj-body">
+              <strong>finguruindia.com</strong>
+              <p class="muted">Finance platform using Elementor. Integrated email automation and PDF delivery.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://finguruindia.com" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="thumb">NBFC Advisory</div>
+            <div class="proj-body">
+              <strong>nbfcadvisory.com</strong>
+              <p class="muted">Custom landing pages, conversion-focused UX and dynamic country code detection for forms.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://nbfcadvisory.com" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="thumb">FinGuru (global)</div>
+            <div class="proj-body">
+              <strong>finguru.io</strong>
+              <p class="muted">Global-facing finance site with scroll animations and interactive CTAs.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://finguru.io" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="thumb">Installation & Repairs</div>
+            <div class="proj-body">
+              <strong>installationandrepairs.com</strong>
+              <p class="muted">ACF-driven modular content blocks, custom taxonomy and backend-friendly templates.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://www.installationandrepairs.com" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="thumb">Bridge to Hope</div>
+            <div class="proj-body">
+              <strong>corningbridgetohope.com</strong>
+              <p class="muted">Responsive WordPress site with clear navigation, integrated contact forms and performance enhancements.</p>
+              <div class="proj-links">
+                <a class="btn" href="https://corningbridgetohope.com/" target="_blank">Visit</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section id="contact">
+        <h3>Contact</h3>
+        <div class="contact-grid" style="margin-top:12px">
+          <div class="card">
+            <form onsubmit="sendMail(event)" id="contactForm">
+              <label for="name">Name</label>
+              <input id="name" name="name" placeholder="Your name" required>
+
+              <label for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="you@example.com" required>
+
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="6" placeholder="Tell me about your project" required></textarea>
+
+              <button class="send" type="submit">Send message</button>
+            </form>
+            <p class="muted" style="margin-top:10px">Or email me directly at <a href="mailto:monibhuva47@gmail.com">monibhuva47@gmail.com</a></p>
+          </div>
+
+          <aside class="card">
+            <h4>Get in touch</h4>
+            <div style="margin-top:8px">
+              <div class="muted">Phone</div>
+              <div style="font-weight:700">+91 87809 05708</div>
+            </div>
+            <div style="margin-top:12px">
+              <div class="muted">LinkedIn</div>
+              <div><a href="https://www.linkedin.com/in/moni-bhuva-28817a1b5" target="_blank">Moni bhuva</a></div>
+            </div>
+
+            <div style="margin-top:12px">
+              <div class="muted">Education</div>
+              <div>Bachelor in Computer Applications — L J College, 2019</div>
+            </div>
+
+            <div style="margin-top:18px" class="muted">Quick links</div>
+            <div style="display:flex;gap:8px;margin-top:8px">
+              <a class="btn" href="#projects">Projects</a>
+              <a class="btn" href="#experience">Experience</a>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © <span id="year"></span> Monika Bhuva — WordPress Developer • Built with care
+    </footer>
+  </div>
+
+  <script>
+    // set year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // small form handler that opens default mail client with prefilled content
+    function sendMail(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent('Portfolio enquiry from ' + name);
+      const body = encodeURIComponent('Name: '+name+'\nEmail: '+email+'\n\n'+message);
+      window.location.href = `mailto:monibhuva47@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // reveal animations
+    window.addEventListener('DOMContentLoaded', ()=>{
+      document.querySelectorAll('.fade-up').forEach((el,i)=>{el.style.animationDelay = (i*60)+'ms'; el.classList.add('fade-up');});
+    });
+  </script>
+</body>
+</html>
